@@ -1,0 +1,13 @@
+{
+  "name": "oAuth Example",
+  "author": {
+    "name": "Joe",
+    "email": "joe@zendesk.com",
+    "url": "http://joem.cc"
+  },
+  "defaultLocale": "en",
+  "private": true,
+  "location": "ticket_sidebar",
+  "version": "1.0",
+  "frameworkVersion": "1.0"
+}

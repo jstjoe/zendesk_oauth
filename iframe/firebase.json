@@ -1,0 +1,9 @@
+{
+  "firebase": "zendesk-oauth",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
