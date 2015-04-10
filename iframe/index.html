@@ -2,21 +2,20 @@
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 <html>
   <head>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <!-- Skeleton -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"> -->
     <!-- ZDK -->
     <script type="text/javascript" src="https://assets.zendesk.com/apps/sdk/latest/zaf_sdk.js"></script>
     <!-- jQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
     <script>
       $(document).ready(function() {
         if(window.location.hash == '#start') {
           // TODO pass this URL down through the SDK
           var newWindow = window.open('https://www.dropbox.com/1/oauth2/authorize?client_id=fwz3c3k0uijtnl2&response_type=token&redirect_uri=https%3A%2F%2Fzendesk-oauth.firebaseapp.com%2F');
           var interval = setInterval(function() {
-            newWindow.postMessage('yo!', '*');
+            newWindow.postMessage('yo', '*');
           }, 4000);
         } else {// not the start page
           $('div.content').html('Taking you back to Zendesk...');
@@ -24,14 +23,14 @@
         window.addEventListener('message', receiveMessage, false);
         function receiveMessage(msg) {
           if(msg.origin == 'https://zendesk-oauth.firebaseapp.com') {//TODO add restrictions
-            if(msg.data == 'yo!' && window.location.host == 'zendesk-oauth.firebaseapp.com') {
+            if(msg.data == 'yo' && window.location.host == 'zendesk-oauth.firebaseapp.com') {
               // respond from the new window
               var parseAccessToken = function (uri) {
                 var match = uri.match(/[#&]access_token=([^&]*)/i);
                 return match[1] || null;
               }
               var token = parseAccessToken(window.location.href);
-              msg.source.postMessage({message: 'holla back youngin!', token: token}, msg.origin);
+              msg.source.postMessage({message: 'authenticated', token: token}, msg.origin);
             } else {
             // received in original iframe
               clearInterval(interval);
@@ -47,6 +46,6 @@
     </script>
   </head>
   <body>
-    <div class="content">Yo!</div>
+    <div class="content">Initiating OAuth...</div>
   </body>
 </html>

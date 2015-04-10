@@ -11,7 +11,7 @@
         // not logged in
         this.switchTo('logIn');
       } else {
-        // check that the token is valid, then go on your merry way if so
+        // TODO check that the token is valid with a generic API call, so the user doesn't get bumped out later if logged out
         services.notify('You already have a token. Proceed apace.');
       }
     },
@@ -22,7 +22,7 @@
     onConnected: function(data) {
       this.store('db_token', data.token);
       // this.switchTo('loggedIn');
-      services.notify('You\'re logged in to DropBox');
+      services.notify('You\'re logged in!');
     }
   };
 }());
